@@ -1,15 +1,5 @@
 ﻿using LB5_1._Database;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity;
-using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LB5_1
 {
@@ -30,8 +20,7 @@ namespace LB5_1
                 {
                     pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                     pictureBox1.Image = Image.FromFile(dialog.FileName);
-                    pictureBox1.Width = 100;
-                    pictureBox1.Height = 140;
+                    pictureBox1.Size = new Size(100, 140);
                 }
                 catch (Exception ex)
                 {
@@ -39,6 +28,7 @@ namespace LB5_1
                 }
             }
         }
+
         private byte[] GetImageBytes(Image image)
         {
             if (image == null)
@@ -61,36 +51,40 @@ namespace LB5_1
             {
                 try
                 {
-                    if (!string.IsNullOrWhiteSpace(textBoxTitle.Text) && !string.IsNullOrWhiteSpace(textBoxAuthor.Text) && !string.IsNullOrWhiteSpace(textBoxYear.Text) && !string.IsNullOrWhiteSpace(textBoxText.Text))
-                    {
-                        Book book = new Book
-                        {
-                            Title = textBoxTitle.Text,
-                            Author = textBoxAuthor.Text,
-                            Year = Convert.ToInt32(textBoxYear.Text),
-                            Text = textBoxText.Text,
-                            Image = GetImageBytes(pictureBox1.Image)
-                        };
-                        db.Books.Add(book);
-                        db.SaveChanges();
-                        MessageBox.Show("Книга " + textBoxTitle.Text + " добавлена");
-                        textBoxTitle.Clear();
-                        textBoxAuthor.Clear();
-                        textBoxYear.Clear();
-                        textBoxText.Clear();
-                        pictureBox1.Image = null;
-                        this.Hide();
-                    }
-                    else
+                    if (string.IsNullOrWhiteSpace(textBoxTitle.Text) || string.IsNullOrWhiteSpace(textBoxAuthor.Text) || string.IsNullOrWhiteSpace(textBoxYear.Text) || string.IsNullOrWhiteSpace(textBoxText.Text))
                     {
                         MessageBox.Show("Заполните все поля");
+                        return;
                     }
+
+                    Book book = new Book
+                    {
+                        Title = textBoxTitle.Text,
+                        Author = textBoxAuthor.Text,
+                        Year = Convert.ToInt32(textBoxYear.Text),
+                        Text = textBoxText.Text,
+                        Image = GetImageBytes(pictureBox1.Image)
+                    };
+                    db.Books.Add(book);
+                    db.SaveChanges();
+                    MessageBox.Show($"Книга {textBoxTitle.Text} добавлена");
+                    textBoxTitle.Clear();
+                    textBoxAuthor.Clear();
+                    textBoxYear.Clear();
+                    textBoxText.Clear();
+                    pictureBox1.Image = null;
+                    Hide();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Ошибка: " + ex.Message);
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

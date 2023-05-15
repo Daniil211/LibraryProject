@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxTitle
@@ -124,11 +125,21 @@
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(64, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(165, 15);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Форма редактирования книг";
+            // 
             // FormEditBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 325);
+            this.ClientSize = new System.Drawing.Size(333, 297);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
@@ -140,6 +151,7 @@
             this.Controls.Add(this.textBoxAuthor);
             this.Controls.Add(this.textBoxTitle);
             this.Name = "FormEditBook";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormEditBook";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -158,5 +170,6 @@
         private Label label4;
         public Button button1;
         public Button button2;
+        private Label label5;
     }
 }

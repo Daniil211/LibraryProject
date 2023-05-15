@@ -61,13 +61,13 @@ namespace LB5_1
                     DialogResult result = ordForm.ShowDialog(this);
                     if (result == DialogResult.Cancel)
                         return;
-                    User order = new User();
+                    User user = new User();
                     string Password = ordForm.textBoxPas.Text;
-                    order.Login = ordForm.textBoxLog.Text;
-                    order.Password = ordForm.GetHashString(Password);
-                    order.Email = ordForm.textBoxEmail.Text;
-                    order.Role = ordForm.comboBoxRole.SelectedItem.ToString();
-                    db.Users.Add(order);
+                    user.Login = ordForm.textBoxLog.Text;
+                    user.Password = ordForm.GetHashString(Password);
+                    user.Email = ordForm.textBoxEmail.Text;
+                    user.Role = ordForm.comboBoxRole.SelectedItem.ToString();
+                    db.Users.Add(user);
                     db.SaveChanges();
                     db.Users.Load();
                     dataGridView1.DataSource = db.Users.Local.ToBindingList();
@@ -93,8 +93,8 @@ namespace LB5_1
                         bool converted = Int32.TryParse(dataGridView1[0, index].Value.ToString(), out id);
                         if (converted == false)
                             return;
-                        User order = db.Users.Find(id);
-                        db.Users.Remove(order);
+                        User user = db.Users.Find(id);
+                        db.Users.Remove(user);
                         db.SaveChanges();
                         db.Users.Load();
                         dataGridView1.DataSource = db.Users.Local.ToBindingList();
@@ -119,20 +119,20 @@ namespace LB5_1
                     bool converted = Int32.TryParse(dataGridView1[0, index].Value.ToString(), out id);
                     if (converted == false)
                         return;
-                    User order = db.Users.Find(id);
+                    User user = db.Users.Find(id);
                     FormAdminPanelCRUD ordForm = new FormAdminPanelCRUD();
-                    ordForm.textBoxLog.Text = order.Login;
-                    ordForm.textBoxPas.Text = order.Password.ToString();
-                    ordForm.textBoxEmail.Text = order.Email.ToString();
+                    ordForm.textBoxLog.Text = user.Login;
+                    ordForm.textBoxPas.Text = user.Password.ToString();
+                    ordForm.textBoxEmail.Text = user.Email.ToString();
 
                     DialogResult result = ordForm.ShowDialog(this);
                     if (result == DialogResult.Cancel)
                         return;
                     string Password = ordForm.textBoxPas.Text;
-                    order.Login = ordForm.textBoxLog.Text;
-                    order.Password = ordForm.GetHashString(Password);
-                    order.Email = ordForm.textBoxEmail.Text;
-                    order.Role = ordForm.comboBoxRole.SelectedItem.ToString();
+                    user.Login = ordForm.textBoxLog.Text;
+                    user.Password = ordForm.GetHashString(Password);
+                    user.Email = ordForm.textBoxEmail.Text;
+                    user.Role = ordForm.comboBoxRole.SelectedItem.ToString();
                     db.SaveChanges();
                     db.Users.Load();
                     dataGridView1.DataSource = db.Users.Local.ToBindingList();

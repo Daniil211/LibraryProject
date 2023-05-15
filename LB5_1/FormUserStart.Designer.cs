@@ -76,6 +76,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.buttonExit);
             this.Name = "FormUserStart";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormUserStart";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

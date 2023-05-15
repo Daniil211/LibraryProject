@@ -112,6 +112,7 @@
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonPanel);
             this.Name = "FormAdminStart";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAdminStart";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

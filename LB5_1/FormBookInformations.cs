@@ -42,5 +42,10 @@ namespace LB5_1
                 MessageBox.Show("Книга не добавлена или добавлена некоректно");
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

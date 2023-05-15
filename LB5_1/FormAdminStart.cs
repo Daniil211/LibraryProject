@@ -87,7 +87,7 @@ namespace LB5_1
                 card.BorderStyle = BorderStyle.FixedSingle;
                 card.Margin = new Padding(10);
                 card.Width = 200;
-                card.Height = 300;
+                card.Height = 250;
 
                 var image = new PictureBox();
                 image.SizeMode = PictureBoxSizeMode.StretchImage;
