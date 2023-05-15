@@ -11,50 +11,65 @@ using System.Net.Mail;
 using System.Net;
 using System.Data.Entity;
 using LB5_1._Database;
+using System.Security.Cryptography;
 
 namespace LB5_1
 {
     public partial class RecoverAcc : Form
     {
-        public RecoverAcc()
+        private User currentUser;
+
+        public RecoverAcc(User user)
         {
             InitializeComponent();
+            this.currentUser = user;
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonRecover_Click(object sender, EventArgs e)
         {
-            if (textBoxEmail != null)
+            using (DataContext db = new DataContext())
             {
-                try
+                string email = textBoxEmail.Text;
+                User user = db.Users.FirstOrDefault(u => u.Email == email);
+                if (user != null && user.Id == currentUser.Id)
                 {
-                    MailAddress from = new MailAddress("", "");
-                    MailAddress to = new MailAddress(textBoxEmail.Text);
-                    MailMessage m = new MailMessage(from, to);
-                    m.Subject = "Тест";
-                    using (DataContext db = new DataContext())
-                    {
-                        foreach (User user in db.Users)
-                        {
-                            if (textBoxEmail.Text == user.Email)
-                            {
-                                m.Body = "<h1>Пароль: " + user.Password + "</h1>";
-                            }
-                        }
-                    }
-                    m.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);
-                    smtp.Credentials = new NetworkCredential("", "");
-                    smtp.EnableSsl = true;
-                    smtp.Send(m);
+                    string newPassword = GeneratePassword();
+                    user.Password = GetHashString(newPassword);
+                    db.SaveChanges();
+                    textBoxNewPas.Text = newPassword;
+                    //this.Close();
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Ошибка");
+                    MessageBox.Show("Неверный email");
                 }
             }
-            else
-                MessageBox.Show("Поле не заполнено");
+        }
+        private string GeneratePassword()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random random = new Random();
+            return new string(Enumerable.Repeat(chars, 8).Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
+        private string GetHashString(string input)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
+        private void btnAuth_Click(object sender, EventArgs e)
+        {
+            var form = new Authorization();
+            this.Hide();
+            form.Show();
+        }
     }
 }

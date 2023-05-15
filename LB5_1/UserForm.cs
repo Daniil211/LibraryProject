@@ -42,9 +42,9 @@ namespace LB5_1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            RecoverAcc form = new RecoverAcc();
-            this.Hide();
-            form.Show();
+            //RecoverAcc form = new RecoverAcc();
+            //this.Hide();
+            //form.Show();
         }
     }
 }

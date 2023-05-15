@@ -42,9 +42,21 @@ namespace LB5_1
 
         private void label5_Click(object sender, EventArgs e)
         {
-            RecoverAcc form = new RecoverAcc();
-            this.Hide();
-            form.Show();
+            using (DataContext db = new DataContext())
+            {
+                try
+                {
+                    string login = textBoxLog.Text;
+                    User user = db.Users.FirstOrDefault(u => u.Login == login);
+                    RecoverAcc form = new RecoverAcc(user);
+                    this.Hide();
+                    form.Show();
+                }
+                catch
+                {
+                    MessageBox.Show("Error");
+                }
+            }
         }
 
         private void buttonAuth_Click_1(object sender, EventArgs e)
