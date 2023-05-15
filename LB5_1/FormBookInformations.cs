@@ -31,9 +31,16 @@ namespace LB5_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string filePath = book.Text; // путь к файлу
-            MessageBox.Show(filePath);
-            Process.Start(new ProcessStartInfo { FileName = filePath, UseShellExecute = true });
+            try
+            {
+                string filePath = book.Text; // путь к файлу
+                Process.Start(new ProcessStartInfo { FileName = filePath, UseShellExecute = true });
+                MessageBox.Show("Происходит открытие");
+            }
+            catch
+            {
+                MessageBox.Show("Книга не добавлена или добавлена некоректно");
+            }
         }
     }
 }
