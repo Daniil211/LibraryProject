@@ -35,7 +35,7 @@
             this.textBoxPas = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAuth = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -101,22 +101,22 @@
             this.label5.Text = "Забыли пароль?";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // button1
+            // buttonAuth
             // 
-            this.button1.Location = new System.Drawing.Point(28, 279);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(165, 49);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Войти";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAuth.Location = new System.Drawing.Point(28, 279);
+            this.buttonAuth.Name = "buttonAuth";
+            this.buttonAuth.Size = new System.Drawing.Size(165, 49);
+            this.buttonAuth.TabIndex = 7;
+            this.buttonAuth.Text = "Войти";
+            this.buttonAuth.UseVisualStyleBackColor = true;
+            this.buttonAuth.Click += new System.EventHandler(this.buttonAuth_Click_1);
             // 
             // Authorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(260, 349);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonAuth);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxPas);
@@ -141,6 +141,6 @@
         private TextBox textBoxPas;
         private Label label4;
         private Label label5;
-        private Button button1;
+        private Button buttonAuth;
     }
 }

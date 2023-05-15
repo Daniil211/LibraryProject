@@ -7,15 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LB5_1._Database;
 
 namespace LB5_1
 {
     public partial class UserForm : Form
     {
-        public UserForm()
+        private User currentUser;
+        public UserForm(User user)
         {
             InitializeComponent();
+            this.currentUser = user;
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

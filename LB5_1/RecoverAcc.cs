@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net.Mail;
 using System.Net;
 using System.Data.Entity;
+using LB5_1._Database;
 
 namespace LB5_1
 {
@@ -30,7 +31,7 @@ namespace LB5_1
                     MailAddress to = new MailAddress(textBoxEmail.Text);
                     MailMessage m = new MailMessage(from, to);
                     m.Subject = "Тест";
-                    using (UserContext db = new UserContext())
+                    using (DataContext db = new DataContext())
                     {
                         foreach (User user in db.Users)
                         {

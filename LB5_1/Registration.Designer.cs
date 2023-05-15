@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.Button buttonUploadPhoto;
             this.textBoxPas = new System.Windows.Forms.TextBox();
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -36,7 +37,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureBoxPhoto = new System.Windows.Forms.PictureBox();
+            buttonUploadPhoto = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).BeginInit();
             this.SuspendLayout();
+            // 
+            // buttonUploadPhoto
+            // 
+            buttonUploadPhoto.Location = new System.Drawing.Point(297, 238);
+            buttonUploadPhoto.Name = "buttonUploadPhoto";
+            buttonUploadPhoto.Size = new System.Drawing.Size(75, 23);
+            buttonUploadPhoto.TabIndex = 13;
+            buttonUploadPhoto.Text = "button2";
+            buttonUploadPhoto.UseVisualStyleBackColor = true;
+            buttonUploadPhoto.Click += new System.EventHandler(this.buttonUploadPhoto_Click_1);
             // 
             // textBoxPas
             // 
@@ -107,11 +121,21 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Регистрация";
             // 
+            // pictureBoxPhoto
+            // 
+            this.pictureBoxPhoto.Location = new System.Drawing.Point(302, 135);
+            this.pictureBoxPhoto.Name = "pictureBoxPhoto";
+            this.pictureBoxPhoto.Size = new System.Drawing.Size(100, 50);
+            this.pictureBoxPhoto.TabIndex = 14;
+            this.pictureBoxPhoto.TabStop = false;
+            // 
             // Registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(263, 369);
+            this.ClientSize = new System.Drawing.Size(559, 530);
+            this.Controls.Add(this.pictureBoxPhoto);
+            this.Controls.Add(buttonUploadPhoto);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
@@ -123,6 +147,7 @@
             this.Name = "Registration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registration";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,5 +163,6 @@
         private Label label1;
         private Button button1;
         private Label label4;
+        private PictureBox pictureBoxPhoto;
     }
 }

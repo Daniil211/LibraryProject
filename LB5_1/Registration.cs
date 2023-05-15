@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using LB5_1._Database;
+using System.Drawing.Imaging;
 
 namespace LB5_1
 {
@@ -20,40 +22,72 @@ namespace LB5_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (UserContext db = new UserContext())
+        using (DataContext db = new DataContext())
+        {
+            if (!string.IsNullOrEmpty(textBoxLog.Text) && !string.IsNullOrEmpty(textBoxPas.Text) && !string.IsNullOrEmpty(textBoxEmail.Text))
             {
-                if (textBoxLog.Text != null && textBoxPas.Text != null && textBoxEmail != null)
+                User user = new User
                 {
-                    User user = new User(textBoxLog.Text,
-                this.GetHashString(textBoxPas.Text),
-                textBoxEmail.Text, "User");
-                    db.Users.Add(user);
-                    db.SaveChanges();
-                    MessageBox.Show("Аккаунт " + textBoxLog.Text + " зарегистрирован");
-                    textBoxLog.Clear();
-                    textBoxEmail.Clear();
-                    textBoxPas.Clear();
-                    Authorization form = new Authorization();
-                    this.Hide();
-                    form.Show();
-                }
-                else
-                    MessageBox.Show("Заполните все поля");
+                    Login = textBoxLog.Text,
+                    Password = GetHashString(textBoxPas.Text),
+                    Email = textBoxEmail.Text,
+                    Role = "User",
+                    Photo = GetImageBytes(pictureBoxPhoto.Image)
+                };
+                db.Users.Add(user);
+                db.SaveChanges();
+                MessageBox.Show("Аккаунт " + textBoxLog.Text + " зарегистрирован");
+                textBoxLog.Clear();
+                textBoxPas.Clear();
+                textBoxEmail.Clear();
+                pictureBoxPhoto.Image = null;
+                Authorization form = new Authorization();
+                this.Hide();
+                form.Show();
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля");
             }
         }
-        private string GetHashString(string s)
+    }
+        private string GetHashString(string input)
         {
-            byte[] bytes = Encoding.Unicode.GetBytes(s);
-
-            MD5CryptoServiceProvider CSP = new
-            MD5CryptoServiceProvider();
-            byte[] byteHash = CSP.ComputeHash(bytes);
-            string hash = "";
-            foreach (byte b in byteHash)
+            using (SHA256 sha256Hash = SHA256.Create())
             {
-                hash += string.Format("{0:x2}", b);
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
             }
-            return hash;
+        }
+
+        private byte[] GetImageBytes(Image image)
+        {
+            if (image == null)
+            {
+                return null;
+            }
+            using (MemoryStream stream = new MemoryStream())
+            {
+                image.Save(stream, ImageFormat.Jpeg);
+                return stream.ToArray();
+            }
+        }
+
+
+        private void buttonUploadPhoto_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureBoxPhoto.Image = Image.FromFile(dialog.FileName);
+            }
         }
     }
 }
+

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using LB5_1._Database;
+
 namespace LB5_1
 {
     public partial class Authorization : Form
@@ -17,46 +19,18 @@ namespace LB5_1
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private string GetHashString(string input)
         {
-            if (textBoxLog.Text != null && textBoxPas.Text != null)
+            using (SHA256 sha256Hash = SHA256.Create())
             {
-                using (UserContext db = new UserContext())
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
                 {
-
-                    foreach (User user in db.Users)
-                    {
-
-                        if (textBoxLog.Text == user.Login &&
-                        this.GetHashString(textBoxPas.Text) == user.Password)
-                        {
-                            MessageBox.Show("успешно!");
-                            UserForm userForm = new UserForm();
-                            this.Hide();
-                            MessageBox.Show("вошли " + user.Login);
-                            userForm.Show();
-                            return;
-                        }
-                    }
-                    MessageBox.Show("Логин или пароль указан неверно!");
+                    builder.Append(bytes[i].ToString("x2"));
                 }
+                return builder.ToString();
             }
-            else
-                MessageBox.Show("Введите все поля");
-        }
-        private string GetHashString(string s)
-        {
-            byte[] bytes = Encoding.Unicode.GetBytes(s);
-
-            MD5CryptoServiceProvider CSP = new
-            MD5CryptoServiceProvider();
-            byte[] byteHash = CSP.ComputeHash(bytes);
-            string hash = "";
-            foreach (byte b in byteHash)
-            {
-                hash += string.Format("{0:x2}", b);
-            }
-            return hash;
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -71,6 +45,28 @@ namespace LB5_1
             RecoverAcc form = new RecoverAcc();
             this.Hide();
             form.Show();
+        }
+
+        private void buttonAuth_Click_1(object sender, EventArgs e)
+        {
+            using (DataContext db = new DataContext())
+            {
+                string login = textBoxLog.Text;
+                string password = GetHashString(textBoxPas.Text);
+                User user = db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
+                if (user != null)
+                {
+                    MessageBox.Show("Добро пожаловать, " + user.Login);
+                    UserForm form = new UserForm(user);
+                    this.Hide();
+                    form.ShowDialog();
+                    this.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный логин или пароль");
+                }
+            }
         }
     }
 }
