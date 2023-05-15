@@ -29,11 +29,77 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.buttonPanel = new System.Windows.Forms.Button();
+            this.buttonExit = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.SuspendLayout();
+            // 
+            // buttonPanel
+            // 
+            this.buttonPanel.Location = new System.Drawing.Point(675, 352);
+            this.buttonPanel.Name = "buttonPanel";
+            this.buttonPanel.Size = new System.Drawing.Size(113, 40);
+            this.buttonPanel.TabIndex = 0;
+            this.buttonPanel.Text = "Панель Администратора";
+            this.buttonPanel.UseVisualStyleBackColor = true;
+            this.buttonPanel.Click += new System.EventHandler(this.buttonPanel_Click);
+            // 
+            // buttonExit
+            // 
+            this.buttonExit.Location = new System.Drawing.Point(675, 398);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(113, 40);
+            this.buttonExit.TabIndex = 1;
+            this.buttonExit.Text = "Закрыть программу";
+            this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(669, 450);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(675, 316);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(113, 30);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Добавить книгу";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // FormAdminStart
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.buttonExit);
+            this.Controls.Add(this.buttonPanel);
+            this.Name = "FormAdminStart";
             this.Text = "FormAdminStart";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Button buttonPanel;
+        private Button buttonExit;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Button button1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

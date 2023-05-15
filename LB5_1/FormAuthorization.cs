@@ -56,7 +56,7 @@ namespace LB5_1
                     }
                     else
                     {
-                        MessageBox.Show("Введите логину, к которому желаете получить доступ");
+                        MessageBox.Show("Введите логин, к которому желаете получить доступ");
                     }
                 }
                 catch
@@ -76,10 +76,18 @@ namespace LB5_1
                 if (user != null)
                 {
                     MessageBox.Show("Добро пожаловать, " + user.Login);
-                    UserForm form = new UserForm(user);
-                    this.Hide();
-                    form.ShowDialog();
-                    this.Show();
+                    if (user.Role == "User")
+                    {
+                        FormUserStart form = new FormUserStart(user);
+                        this.Hide();
+                        form.Show();
+                    }
+                    else if (user.Role == "Admin")
+                    {
+                        FormAdminStart form = new FormAdminStart(user);
+                        this.Hide();
+                        form.Show();
+                    }
                 }
                 else
                 {

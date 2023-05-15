@@ -12,7 +12,7 @@ namespace LB5_1._Database
         public string Title { get; set; }
         public string Author { get; set; }
         public int Year { get; set; }
-        public byte[] Image { get; set; }
+        public byte[]? Image { get; set; }
         public string Text { get; set; }
     }
 }

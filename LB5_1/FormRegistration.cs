@@ -22,35 +22,43 @@ namespace LB5_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-        using (DataContext db = new DataContext())
-        {
-            if (!string.IsNullOrEmpty(textBoxLog.Text) && !string.IsNullOrEmpty(textBoxPas.Text) && !string.IsNullOrEmpty(textBoxEmail.Text))
+            using (DataContext db = new DataContext())
             {
-                User user = new User
+                try
                 {
-                    Login = textBoxLog.Text,
-                    Password = GetHashString(textBoxPas.Text),
-                    Email = textBoxEmail.Text,
-                    Role = "User",
-                    Photo = GetImageBytes(pictureBoxPhoto.Image)
-                };
-                db.Users.Add(user);
-                db.SaveChanges();
-                MessageBox.Show("Аккаунт " + textBoxLog.Text + " зарегистрирован");
-                textBoxLog.Clear();
-                textBoxPas.Clear();
-                textBoxEmail.Clear();
-                pictureBoxPhoto.Image = null;
-                FormAuthorization form = new FormAuthorization();
-                this.Hide();
-                form.Show();
-            }
-            else
-            {
-                MessageBox.Show("Заполните все поля");
+                    if (!string.IsNullOrWhiteSpace(textBoxLog.Text) && !string.IsNullOrWhiteSpace(textBoxPas.Text) && !string.IsNullOrWhiteSpace(textBoxEmail.Text))
+                    {
+                        User user = new User
+                        {
+                            Login = textBoxLog.Text,
+                            Password = GetHashString(textBoxPas.Text),
+                            Email = textBoxEmail.Text,
+                            Role = "User",
+                            Photo = GetImageBytes(pictureBoxPhoto.Image)
+                        };
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                        MessageBox.Show("Аккаунт " + textBoxLog.Text + " зарегистрирован");
+                        textBoxLog.Clear();
+                        textBoxPas.Clear();
+                        textBoxEmail.Clear();
+                        pictureBoxPhoto.Image = null;
+                        FormAuthorization form = new FormAuthorization();
+                        this.Hide();
+                        form.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заполните все поля");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка: " + ex.Message);
+                }
             }
         }
-    }
+
         private string GetHashString(string input)
         {
             using (SHA256 sha256Hash = SHA256.Create())
@@ -87,10 +95,17 @@ namespace LB5_1
             dialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                pictureBoxPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
-                pictureBoxPhoto.Image = Image.FromFile(dialog.FileName);
-                pictureBoxPhoto.Width = 300; 
-                pictureBoxPhoto.Height = 400;
+                try
+                {
+                    pictureBoxPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureBoxPhoto.Image = Image.FromFile(dialog.FileName);
+                    pictureBoxPhoto.Width = 300;
+                    pictureBoxPhoto.Height = 400;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка: " + ex.Message);
+                }
             }
         }
     }
