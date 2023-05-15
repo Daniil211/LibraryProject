@@ -28,14 +28,14 @@ namespace LB5_1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Authorization form = new Authorization();
+            FormAuthorization form = new FormAuthorization();
             this.Hide();
             form.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Registration form = new Registration();
+            FormRegistration form = new FormRegistration();
             this.Hide();
             form.Show();
         }

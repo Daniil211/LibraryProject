@@ -1,6 +1,6 @@
 ﻿namespace LB5_1
 {
-    partial class Authorization
+    partial class FormAuthorization
     {
         /// <summary>
         /// Required designer variable.

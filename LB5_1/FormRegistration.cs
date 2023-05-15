@@ -13,9 +13,9 @@ using System.Drawing.Imaging;
 
 namespace LB5_1
 {
-    public partial class Registration : Form
+    public partial class FormRegistration : Form
     {
-        public Registration()
+        public FormRegistration()
         {
             InitializeComponent();
         }
@@ -41,7 +41,7 @@ namespace LB5_1
                 textBoxPas.Clear();
                 textBoxEmail.Clear();
                 pictureBoxPhoto.Image = null;
-                Authorization form = new Authorization();
+                FormAuthorization form = new FormAuthorization();
                 this.Hide();
                 form.Show();
             }

@@ -1,6 +1,6 @@
 ﻿namespace LB5_1
 {
-    partial class Registration
+    partial class FormRegistration
     {
         /// <summary>
         /// Required designer variable.

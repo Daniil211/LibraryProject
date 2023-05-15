@@ -15,11 +15,11 @@ using System.Security.Cryptography;
 
 namespace LB5_1
 {
-    public partial class RecoverAcc : Form
+    public partial class FormRecovery : Form
     {
         private User currentUser;
 
-        public RecoverAcc(User user)
+        public FormRecovery(User user)
         {
             InitializeComponent();
             this.currentUser = user;
@@ -29,19 +29,26 @@ namespace LB5_1
             using (DataContext db = new DataContext())
             {
                 string email = textBoxEmail.Text;
+                if (string.IsNullOrEmpty(email))
+                {
+                    MessageBox.Show("Введите email");
+                    return;
+                }
                 User user = db.Users.FirstOrDefault(u => u.Email == email);
-                if (user != null && user.Id == currentUser.Id)
+                if (user == null)
                 {
-                    string newPassword = GeneratePassword();
-                    user.Password = GetHashString(newPassword);
-                    db.SaveChanges();
-                    textBoxNewPas.Text = newPassword;
-                    //this.Close();
+                    MessageBox.Show("Пользователь с таким email не найден");
+                    return;
                 }
-                else
+                if (user.Id != currentUser.Id)
                 {
-                    MessageBox.Show("Неверный email");
+                    MessageBox.Show("Вы не можете восстановить пароль для другого пользователя");
+                    return;
                 }
+                string newPassword = GeneratePassword();
+                user.Password = GetHashString(newPassword);
+                db.SaveChanges();
+                textBoxNewPas.Text = newPassword;
             }
         }
         private string GeneratePassword()
@@ -67,7 +74,7 @@ namespace LB5_1
 
         private void btnAuth_Click(object sender, EventArgs e)
         {
-            var form = new Authorization();
+            var form = new FormAuthorization();
             this.Hide();
             form.Show();
         }

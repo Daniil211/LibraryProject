@@ -12,9 +12,9 @@ using LB5_1._Database;
 
 namespace LB5_1
 {
-    public partial class Authorization : Form
+    public partial class FormAuthorization : Form
     {
-        public Authorization()
+        public FormAuthorization()
         {
             InitializeComponent();
         }
@@ -35,7 +35,7 @@ namespace LB5_1
 
         private void label4_Click(object sender, EventArgs e)
         {
-            Registration form = new Registration();
+            FormRegistration form = new FormRegistration();
             this.Hide();
             form.Show();
         }
@@ -46,11 +46,18 @@ namespace LB5_1
             {
                 try
                 {
-                    string login = textBoxLog.Text;
-                    User user = db.Users.FirstOrDefault(u => u.Login == login);
-                    RecoverAcc form = new RecoverAcc(user);
-                    this.Hide();
-                    form.Show();
+                    if (textBoxLog.Text.Length > 0)
+                    {
+                        string login = textBoxLog.Text;
+                        User user = db.Users.FirstOrDefault(u => u.Login == login);
+                        FormRecovery form = new FormRecovery(user);
+                        this.Hide();
+                        form.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введите логину, к которому желаете получить доступ");
+                    }
                 }
                 catch
                 {

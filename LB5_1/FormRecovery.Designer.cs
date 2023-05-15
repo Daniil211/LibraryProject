@@ -1,6 +1,6 @@
 ﻿namespace LB5_1
 {
-    partial class RecoverAcc
+    partial class FormRecovery
     {
         /// <summary>
         /// Required designer variable.
@@ -78,7 +78,7 @@
             // 
             this.btnAuth.Location = new System.Drawing.Point(199, 305);
             this.btnAuth.Name = "btnAuth";
-            this.btnAuth.Size = new System.Drawing.Size(75, 23);
+            this.btnAuth.Size = new System.Drawing.Size(115, 30);
             this.btnAuth.TabIndex = 4;
             this.btnAuth.Text = "Ф Авторизация";
             this.btnAuth.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 380);
+            this.ClientSize = new System.Drawing.Size(533, 540);
             this.Controls.Add(this.textBoxNewPas);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAuth);
