@@ -28,6 +28,16 @@ namespace LB5_1
                 {
                     if (!string.IsNullOrWhiteSpace(textBoxLog.Text) && !string.IsNullOrWhiteSpace(textBoxPas.Text) && !string.IsNullOrWhiteSpace(textBoxEmail.Text))
                     {
+                        if (textBoxPas.Text.Length < 3)
+                        {
+                            MessageBox.Show("Пароль должен содержать не менее 3 символов");
+                            return;
+                        }
+                        if (db.Users.Any(u => u.Login == textBoxLog.Text))
+                        {
+                            MessageBox.Show("Пользователь с таким логином уже существует");
+                            return;
+                        }
                         User user = new User
                         {
                             Login = textBoxLog.Text,
