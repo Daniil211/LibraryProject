@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LB5_1._Database;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace LB5_1
 {
@@ -19,14 +22,17 @@ namespace LB5_1
             InitializeComponent();
             this.user = user;
             LoadUserData();
+            textBoxLogin.ReadOnly = true;
+            textBoxEmail.ReadOnly = true;
+            textBoxRole.ReadOnly = true;
         }
 
         private void LoadUserData()
         {
             // Заполняем элементы управления данными о пользователе
-            labelLogin.Text = user.Login;
-            labelEmail.Text = user.Email;
-            labelRole.Text = user.Role;
+            textBoxLogin.Text = user.Login;
+            textBoxEmail.Text = user.Email;
+            textBoxRole.Text = user.Role;
             if (user.Photo != null)
             {
                 using (var ms = new MemoryStream(user.Photo))
@@ -42,6 +48,12 @@ namespace LB5_1
                 var thumbnail = testImage.GetThumbnailImage(300, 400, null, IntPtr.Zero);
                 pictureBox1.Image = thumbnail;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string filePath = @"C:\path\to\file.pdf"; // путь к файлу
+            Process.Start(filePath);
         }
     }
 }

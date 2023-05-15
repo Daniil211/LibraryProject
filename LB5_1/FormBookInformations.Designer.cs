@@ -32,6 +32,7 @@
             this.authorLabel = new System.Windows.Forms.Label();
             this.yearLabel = new System.Windows.Forms.Label();
             this.imagePictureBox = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imagePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,11 +71,22 @@
             this.imagePictureBox.TabIndex = 3;
             this.imagePictureBox.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(78, 220);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormBookInformations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.imagePictureBox);
             this.Controls.Add(this.yearLabel);
             this.Controls.Add(this.authorLabel);
@@ -93,5 +105,6 @@
         private Label authorLabel;
         private Label yearLabel;
         private PictureBox imagePictureBox;
+        private Button button1;
     }
 }

@@ -1,13 +1,5 @@
 ﻿using LB5_1._Database;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace LB5_1
 {
@@ -35,6 +27,13 @@ namespace LB5_1
                     imagePictureBox.Image = Image.FromStream(ms);
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string filePath = book.Text; // путь к файлу
+            MessageBox.Show(filePath);
+            Process.Start(new ProcessStartInfo { FileName = filePath, UseShellExecute = true });
         }
     }
 }

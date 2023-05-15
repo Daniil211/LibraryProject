@@ -139,5 +139,11 @@ namespace LB5_1
         {
             LoadBooks();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormBookEditAndDelete form = new FormBookEditAndDelete();
+            form.ShowDialog();
+        }
     }
 }
