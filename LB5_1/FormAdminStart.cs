@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using LB5_1._Database;
 using static System.Reflection.Metadata.BlobBuilder;
 using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LB5_1
 {
@@ -28,8 +29,37 @@ namespace LB5_1
             timer.Interval = 5000; // Интервал обновления в миллисекундах
             timer.Tick += timer1_Tick;
             timer.Start();
-        }
 
+            if (currentUser.Photo != null)
+            {
+                using (var ms = new MemoryStream(currentUser.Photo))
+                {
+                    pictureBox1.Image = System.Drawing.Image.FromStream(ms);
+                }
+            }
+            if (currentUser.Photo != null)
+            {
+                using (var ms = new MemoryStream(currentUser.Photo))
+                {
+                    var image = System.Drawing.Image.FromStream(ms);
+                    var thumbnail = image.GetThumbnailImage(100, 100, null, IntPtr.Zero);
+                    pictureBox1.Image = thumbnail;
+                }
+            }
+            else
+            {
+                var testImage = System.Drawing.Image.FromFile("C:\\Users\\id202\\Desktop\\Важные репозитории\\LB5_1\\LB5_1\\_Image\\profiles.png");
+                var thumbnail = testImage.GetThumbnailImage(100, 100, null, IntPtr.Zero);
+                pictureBox1.Image = thumbnail;
+            }
+
+            pictureBox1.Click += (sender, e) =>
+            {
+                // Создаем новую форму для отображения данных о пользователе
+                var userForm = new FormUserInformation(currentUser);
+                userForm.ShowDialog();
+            };
+        }
         private void buttonPanel_Click(object sender, EventArgs e)
         {
             FormAdminPanel form = new FormAdminPanel();
@@ -38,7 +68,7 @@ namespace LB5_1
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
         private void LoadBooks()
         {
@@ -69,7 +99,7 @@ namespace LB5_1
                 {
                     using (var ms = new MemoryStream(book.Image))
                     {
-                        image.Image = Image.FromStream(ms);
+                        image.Image = System.Drawing.Image.FromStream(ms);
                     }
                 }
                 card.Controls.Add(image);

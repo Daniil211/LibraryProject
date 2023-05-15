@@ -38,33 +38,33 @@
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(103, 89);
+            this.titleLabel.Location = new System.Drawing.Point(64, 83);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(38, 15);
+            this.titleLabel.Size = new System.Drawing.Size(59, 15);
             this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "label1";
+            this.titleLabel.Text = "Название";
             // 
             // authorLabel
             // 
             this.authorLabel.AutoSize = true;
-            this.authorLabel.Location = new System.Drawing.Point(103, 127);
+            this.authorLabel.Location = new System.Drawing.Point(64, 121);
             this.authorLabel.Name = "authorLabel";
-            this.authorLabel.Size = new System.Drawing.Size(38, 15);
+            this.authorLabel.Size = new System.Drawing.Size(40, 15);
             this.authorLabel.TabIndex = 1;
-            this.authorLabel.Text = "label1";
+            this.authorLabel.Text = "Автор";
             // 
             // yearLabel
             // 
             this.yearLabel.AutoSize = true;
-            this.yearLabel.Location = new System.Drawing.Point(103, 167);
+            this.yearLabel.Location = new System.Drawing.Point(64, 161);
             this.yearLabel.Name = "yearLabel";
-            this.yearLabel.Size = new System.Drawing.Size(38, 15);
+            this.yearLabel.Size = new System.Drawing.Size(75, 15);
             this.yearLabel.TabIndex = 2;
-            this.yearLabel.Text = "label1";
+            this.yearLabel.Text = "Год выпуска";
             // 
             // imagePictureBox
             // 
-            this.imagePictureBox.Location = new System.Drawing.Point(335, 104);
+            this.imagePictureBox.Location = new System.Drawing.Point(288, 23);
             this.imagePictureBox.Name = "imagePictureBox";
             this.imagePictureBox.Size = new System.Drawing.Size(300, 400);
             this.imagePictureBox.TabIndex = 3;
@@ -74,7 +74,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(622, 450);
             this.Controls.Add(this.imagePictureBox);
             this.Controls.Add(this.yearLabel);
             this.Controls.Add(this.authorLabel);
