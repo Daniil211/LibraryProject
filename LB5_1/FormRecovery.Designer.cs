@@ -78,9 +78,9 @@
             // 
             this.btnAuth.Location = new System.Drawing.Point(199, 305);
             this.btnAuth.Name = "btnAuth";
-            this.btnAuth.Size = new System.Drawing.Size(115, 30);
+            this.btnAuth.Size = new System.Drawing.Size(115, 40);
             this.btnAuth.TabIndex = 4;
-            this.btnAuth.Text = "Ф Авторизация";
+            this.btnAuth.Text = "Перейти к Авторизации";
             this.btnAuth.UseVisualStyleBackColor = true;
             this.btnAuth.Click += new System.EventHandler(this.btnAuth_Click);
             // 
@@ -100,11 +100,11 @@
             this.textBoxNewPas.Size = new System.Drawing.Size(91, 23);
             this.textBoxNewPas.TabIndex = 6;
             // 
-            // RecoverAcc
+            // FormRecovery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 540);
+            this.ClientSize = new System.Drawing.Size(328, 377);
             this.Controls.Add(this.textBoxNewPas);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAuth);
@@ -112,7 +112,7 @@
             this.Controls.Add(this.buttonRecover);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "RecoverAcc";
+            this.Name = "FormRecovery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RecoverAcc";
             this.ResumeLayout(false);

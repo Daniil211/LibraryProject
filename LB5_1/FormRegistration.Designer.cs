@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Button buttonUploadPhoto;
             this.textBoxPas = new System.Windows.Forms.TextBox();
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,23 +37,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBoxPhoto = new System.Windows.Forms.PictureBox();
-            buttonUploadPhoto = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).BeginInit();
             this.SuspendLayout();
             // 
-            // buttonUploadPhoto
-            // 
-            buttonUploadPhoto.Location = new System.Drawing.Point(297, 238);
-            buttonUploadPhoto.Name = "buttonUploadPhoto";
-            buttonUploadPhoto.Size = new System.Drawing.Size(75, 23);
-            buttonUploadPhoto.TabIndex = 13;
-            buttonUploadPhoto.Text = "button2";
-            buttonUploadPhoto.UseVisualStyleBackColor = true;
-            buttonUploadPhoto.Click += new System.EventHandler(this.buttonUploadPhoto_Click_1);
-            // 
             // textBoxPas
             // 
-            this.textBoxPas.Location = new System.Drawing.Point(47, 179);
+            this.textBoxPas.Location = new System.Drawing.Point(43, 179);
             this.textBoxPas.Name = "textBoxPas";
             this.textBoxPas.Size = new System.Drawing.Size(169, 23);
             this.textBoxPas.TabIndex = 8;
@@ -86,9 +75,9 @@
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(48, 238);
+            this.textBoxEmail.Location = new System.Drawing.Point(43, 238);
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(165, 23);
+            this.textBoxEmail.Size = new System.Drawing.Size(169, 23);
             this.textBoxEmail.TabIndex = 9;
             // 
             // label1
@@ -103,9 +92,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(48, 286);
+            this.button1.Location = new System.Drawing.Point(43, 328);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 32);
+            this.button1.Size = new System.Drawing.Size(168, 32);
             this.button1.TabIndex = 11;
             this.button1.Text = "Зарегистрироваться";
             this.button1.UseVisualStyleBackColor = true;
@@ -123,19 +112,30 @@
             // 
             // pictureBoxPhoto
             // 
-            this.pictureBoxPhoto.Location = new System.Drawing.Point(302, 135);
+            this.pictureBoxPhoto.Location = new System.Drawing.Point(238, 30);
             this.pictureBoxPhoto.Name = "pictureBoxPhoto";
-            this.pictureBoxPhoto.Size = new System.Drawing.Size(100, 50);
+            this.pictureBoxPhoto.Size = new System.Drawing.Size(300, 400);
             this.pictureBoxPhoto.TabIndex = 14;
             this.pictureBoxPhoto.TabStop = false;
             // 
-            // Registration
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(43, 279);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(169, 32);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "Выбор фото";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // FormRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(559, 530);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBoxPhoto);
-            this.Controls.Add(buttonUploadPhoto);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
@@ -144,7 +144,7 @@
             this.Controls.Add(this.textBoxLog);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Name = "Registration";
+            this.Name = "FormRegistration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registration";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).EndInit();
@@ -164,5 +164,6 @@
         private Button button1;
         private Label label4;
         private PictureBox pictureBoxPhoto;
+        private Button button2;
     }
 }

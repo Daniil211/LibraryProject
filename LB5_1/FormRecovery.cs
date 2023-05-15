@@ -28,27 +28,34 @@ namespace LB5_1
         {
             using (DataContext db = new DataContext())
             {
-                string email = textBoxEmail.Text;
-                if (string.IsNullOrEmpty(email))
+                try
                 {
-                    MessageBox.Show("Введите email");
-                    return;
+                    string email = textBoxEmail.Text;
+                    if (string.IsNullOrEmpty(email))
+                    {
+                        MessageBox.Show("Введите email");
+                        return;
+                    }
+                    User user = db.Users.FirstOrDefault(u => u.Email == email);
+                    if (user == null)
+                    {
+                        MessageBox.Show("Пользователь с таким email не найден");
+                        return;
+                    }
+                    if (user.Id != currentUser.Id)
+                    {
+                        MessageBox.Show("Вы не можете восстановить пароль для другого пользователя");
+                        return;
+                    }
+                    string newPassword = GeneratePassword();
+                    user.Password = GetHashString(newPassword);
+                    db.SaveChanges();
+                    textBoxNewPas.Text = newPassword;
                 }
-                User user = db.Users.FirstOrDefault(u => u.Email == email);
-                if (user == null)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Пользователь с таким email не найден");
-                    return;
+                    MessageBox.Show("Ошибка: " + ex.Message);
                 }
-                if (user.Id != currentUser.Id)
-                {
-                    MessageBox.Show("Вы не можете восстановить пароль для другого пользователя");
-                    return;
-                }
-                string newPassword = GeneratePassword();
-                user.Password = GetHashString(newPassword);
-                db.SaveChanges();
-                textBoxNewPas.Text = newPassword;
             }
         }
         private string GeneratePassword()

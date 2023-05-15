@@ -71,21 +71,26 @@ namespace LB5_1
             {
                 return null;
             }
-            using (MemoryStream stream = new MemoryStream())
+            using (Bitmap bitmap = new Bitmap(image, new Size(300, 400)))
             {
-                image.Save(stream, ImageFormat.Jpeg);
-                return stream.ToArray();
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    bitmap.Save(stream, ImageFormat.Jpeg);
+                    return stream.ToArray();
+                }
             }
         }
 
-
-        private void buttonUploadPhoto_Click_1(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                pictureBoxPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBoxPhoto.Image = Image.FromFile(dialog.FileName);
+                pictureBoxPhoto.Width = 300; 
+                pictureBoxPhoto.Height = 400;
             }
         }
     }
